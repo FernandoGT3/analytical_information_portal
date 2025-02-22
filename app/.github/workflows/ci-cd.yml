@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Configurar Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      
+      - name: Instalar dependências e rodar testes (frontend)
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm test -- --watchAll=false
+      
+      - name: Instalar dependências e rodar testes (backend)
+        working-directory: ./backend
+        run: |
+          npm install
+          npm test
+      
+      - name: Build das imagens Docker
+        run: docker-compose build
+      
+      - name: Deploy
+        run: echo "Passo de deploy – integrar com ambiente de produção"
