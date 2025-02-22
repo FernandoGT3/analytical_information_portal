@@ -1,25 +1,40 @@
-version: '3'
+version: '3.8'
 services:
-  frontend:
+  portal-frontend:
     build: ./frontend
+    container_name: portal-frontend
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      - portal-backend
+    networks:
+      - portal-network
 
-  backend:
+  portal-backend:
     build: ./backend
+    container_name: portal-backend
     ports:
       - "3001:3001"
+    depends_on:
+      - portal-geoserver
+    networks:
+      - portal-network
   
-  geoserver:
+  portal-geoserver:
     image: oscarfonts/geoserver:latest
+    container_name: portal-geoserver
     ports:
       - "8080:8080"
     environment:
       - GEOSERVER_ADMIN_PASSWORD=geoserver
     volumes:
       - geoserver_data:/opt/geoserver/data_dir
+    networks:
+      - portal-network
 
 volumes:
   geoserver_data:
+
+networks:
+  portal-network:
+    driver: bridge
