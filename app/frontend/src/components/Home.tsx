@@ -1,13 +1,13 @@
 import React from 'react';
 import DashboardCard from './DashboardCard';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Home.scss';
 
 const Home: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleMapAccess = () => {
-    history.push('/map');
+    navigate('/map');
   };
 
   return (
