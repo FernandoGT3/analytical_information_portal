@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/slices/userSlice';
 
+import Particles from 'react-tsparticles';
+import { loadFull } from "tsparticles";
+
 import '../styles/Login.scss';
 
 const Login: React.FC = () => {
@@ -35,17 +38,45 @@ const Login: React.FC = () => {
     }
   };
 
+  const particlesInit = async (main: any) => {
+    await loadFull(main);
+  };
+
   return (
     <div className="login-background">
+      {/* Particles como camada de fundo */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: { enable: false },
+          background: { color: { value: "transparent" } },
+          particles: {
+            number: { value: 50 },
+            size: { value: 3 },
+            move: { enable: true, speed: 1 },
+            opacity: { value: 0.3 },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "repulse" },
+              onClick: { enable: true, mode: "push" }
+            }
+          },
+          detectRetina: true,
+        }}
+      />
+
       <div className="login-box">
         <h2>Login</h2>
-        
+        <p className="subtitle">Portal Analítico</p>
+
         {error && <p className="error-message">{error}</p>}
 
         <form onSubmit={handleSubmit}>
           <div className="input-field">
             <span className="icon">
-              <i className="fas fa-user"></i>
+              <i className="fa-solid fa-user" />
             </span>
             <input
               type="text"
@@ -58,7 +89,7 @@ const Login: React.FC = () => {
 
           <div className="input-field">
             <span className="icon">
-              <i className="fas fa-lock"></i>
+              <i className="fa-solid fa-lock" />
             </span>
             <input
               type="password"
