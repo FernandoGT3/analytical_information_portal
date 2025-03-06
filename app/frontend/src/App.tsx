@@ -9,7 +9,10 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+        {/* Rota de login livre, sem proteção */}
         <Route path="/login" element={<Login />} />
+        
+        {/* Rota para Home, protegida por PrivateRoute */}
         <Route
           path="/"
           element={
@@ -18,6 +21,8 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
+
+        {/* Rota para Mapa, também protegida */}
         <Route
           path="/map"
           element={
@@ -26,6 +31,7 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
+
       </Routes>
     </Router>
   );
