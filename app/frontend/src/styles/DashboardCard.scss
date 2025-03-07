@@ -1,0 +1,29 @@
+@import 'variables';
+
+.dashboard-card {
+  background-color: #fff;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  min-width: 160px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    color: $text-color;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+  }
+
+  .variation {
+    font-size: 0.85rem;
+    color: $interactive-color;
+    margin-top: 0.25rem;
+  }
+}

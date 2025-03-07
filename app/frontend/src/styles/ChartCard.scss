@@ -1,0 +1,26 @@
+@import 'variables';
+
+.chart-card {
+  background-color: #fff;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  margin: 0 0.5rem;
+
+  h3 {
+    color: $text-color;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 0.5rem;
+  }
+}

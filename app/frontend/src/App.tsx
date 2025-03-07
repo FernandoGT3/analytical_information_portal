@@ -5,9 +5,13 @@ import Home from './components/Home';
 import MapPage from './components/MapPage';
 import PrivateRoute from './components/PrivateRoute';
 
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 const App: React.FC = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
         {/* Rota de login livre, sem proteção */}
         <Route path="/login" element={<Login />} />
@@ -16,9 +20,9 @@ const App: React.FC = () => {
         <Route
           path="/"
           element={
-            <PrivateRoute>
+            // <PrivateRoute>
               <Home />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
@@ -31,8 +35,8 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
-
       </Routes>
+      <Footer />
     </Router>
   );
 };
