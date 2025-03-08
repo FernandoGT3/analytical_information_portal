@@ -10,7 +10,7 @@ const MapPreview: React.FC<MapPreviewProps> = ({ onAccessMap }) => {
     <div className="map-preview">
       <h3>Visualização do Mapa</h3>
       <div className="map-area">
-        <p>Visualize dados geoespaciais no mapa interativo</p>
+        <p>Mapa Interativo</p>
         <button onClick={onAccessMap}>Acessar Mapa</button>
       </div>
       <p className="view-full-map">Ver mapa completo</p>

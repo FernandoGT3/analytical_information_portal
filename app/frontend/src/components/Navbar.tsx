@@ -1,25 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.scss';
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleAccessMap = () => {
+    navigate('/map');
+  };
+
   return (
     <nav className="navbar">
-      <div className="navbar-brand">
-        <h2>VisualPlex</h2>
-      </div>
-      <ul className="navbar-menu">
-        <li>
-          <Link to="/">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/map">Mapa</Link>
-        </li>
-      </ul>
-      <div className="navbar-actions">
-        <Link to="/map" className="btn-map-access">
-          Acessar Mapa
-        </Link>
+      <div className="navbar-brand">VisualPlex</div>
+      <div className="navbar-links">
+        <Link to="/">Dashboard</Link>
+        <Link to="/map">Mapa</Link>
+        <button onClick={handleAccessMap}>Acessar Mapa</button>
       </div>
     </nav>
   );

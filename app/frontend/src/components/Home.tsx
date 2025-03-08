@@ -8,6 +8,26 @@ import '../styles/Home.scss';
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
+  // Dados fictícios para o gráfico de Barras
+  const monthlySalesData = [
+    { name: 'Jan', vendas: 40 },
+    { name: 'Fev', vendas: 70 },
+    { name: 'Mar', vendas: 100 },
+    { name: 'Abr', vendas: 90 },
+    { name: 'Mai', vendas: 120 },
+    { name: 'Jun', vendas: 80 },
+  ];
+
+  // Dados fictícios para o gráfico de Linhas
+  const vendasInstalacoesData = [
+    { name: 'Jan', vendas: 40, instalacoes: 25 },
+    { name: 'Fev', vendas: 70, instalacoes: 45 },
+    { name: 'Mar', vendas: 100, instalacoes: 60 },
+    { name: 'Abr', vendas: 90, instalacoes: 55 },
+    { name: 'Mai', vendas: 120, instalacoes: 75 },
+    { name: 'Jun', vendas: 80, instalacoes: 50 },
+  ];
+
   const handleAccessMap = () => {
     navigate('/map');
   };
@@ -20,36 +40,38 @@ const Home: React.FC = () => {
       </div>
 
       <div className="cards-row">
-        <DashboardCard 
-          title="Vendas Totais" 
-          value="1.254" 
-          variation="+3.2% vs. mês anterior" 
+        <DashboardCard
+          title="Vendas Totais"
+          value="1.254"
+          variation="+3.2% vs. mês anterior"
         />
-        <DashboardCard 
-          title="CTOs Disponíveis" 
-          value="843" 
-          variation="+1.5% vs. mês anterior" 
+        <DashboardCard
+          title="CTOs Disponíveis"
+          value="843"
+          variation="+1.5% vs. mês anterior"
         />
-        <DashboardCard 
-          title="Taxa de Desconexão" 
-          value="2.4%" 
-          variation="-0.8% vs. mês anterior" 
+        <DashboardCard
+          title="Taxa de Desconexão"
+          value="2.4%"
+          variation="-0.8% vs. mês anterior"
         />
-        <DashboardCard 
-          title="HPs Cobertos" 
-          value="35" 
-          variation="+2% vs. mês anterior" 
+        <DashboardCard
+          title="HPs Cobertos"
+          value="35"
+          variation="+2% vs. mês anterior"
         />
       </div>
 
       <div className="charts-row">
-        <ChartCard 
-          title="Vendas Mensais" 
-          chartImgSrc="/charts/bar-chart.png" 
+        <ChartCard
+          title="Vendas Mensais"
+          chartType="bar"
+          data={monthlySalesData}
         />
-        <ChartCard 
-          title="Vendas vs Instalações" 
-          chartImgSrc="/charts/line-chart.png" 
+        <ChartCard
+          title="Vendas vs Instalações"
+          chartType="line"
+          data={vendasInstalacoesData}
         />
       </div>
 

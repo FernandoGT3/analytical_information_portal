@@ -1,10 +1,31 @@
-// Paleta de Cores
-$primary-color: #0077B6;   // header, botões principais
-$text-color: #415A77;      // textos
-$highlight-color: #48CAE4; // destaques
-$interactive-color: #80ED99; // elementos interativos
-$background-color: #F8F9FA;  // fundo
+// // Paleta de Cores
+// $primary-color: #0077B6;   // header, botões principais
+// $text-color: #415A77;      // textos
+// $highlight-color: #48CAE4; // destaques
+// $interactive-color: #80ED99; // elementos interativos
+// $background-color: #F8F9FA;  // fundo
 
-// Neutras
-$border-color: #ADB5BD;  
-$subtitle-color: #8D99AE; 
+// // Neutras
+// $border-color: #ADB5BD;  
+// $subtitle-color: #8D99AE; 
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+// Paleta de Cores
+$primary-color: #006bb3;
+$secondary-color: #2ecc71;
+$danger-color: #e74c3c;
+
+$text-color: #333;
+$subtext-color: #777;
+$white-color: #fff;
+$background-color: #f5f7fa;
+$card-background: #fff;
+
+$border-radius: 8px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+$font-family: 'Roboto', sans-serif;
+
+$transition-default: 0.3s ease-in-out;
