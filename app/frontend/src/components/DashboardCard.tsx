@@ -7,32 +7,38 @@ import '../styles/DashboardCard.scss';
 interface DashboardCardProps {
   title: string;
   value: string;
-  variation?: string;
-  icon?: IconType; // Mantemos IconType
+  variation?: string; // Ex.: "+3.2% vs. mês anterior"
+  icon?: IconType;    // Ícone do react-icons
+  positiveVariation?: boolean; // Para colorir em verde ou vermelho
 }
 
 const DashboardCard: React.FC<DashboardCardProps> = ({
   title,
   value,
   variation,
-  icon
+  icon: Icon,
+  positiveVariation = true,
 }) => {
   // Se nenhum ícone for passado, usamos FaChartBar como default
-  const IconComponent = icon || FaChartBar;
+  const IconComponent = Icon || FaChartBar;
 
   // Força a tipagem para React.FC de SVG
-  const IconComponentAsAny = IconComponent as unknown as React.FC<
+  const IconCast = IconComponent as unknown as React.FC<
     React.SVGProps<SVGSVGElement>
   >;
 
   return (
     <div className="dashboard-card">
-      <div className="card-header">
-        <IconComponentAsAny className="card-icon" />
-        <h3>{title}</h3>
+      {Icon && <IconCast className="card-icon" />}
+      <div className="card-content">
+        <h4 className="card-title">{title}</h4>
+        <p className="card-value">{value}</p>
+        {variation && (
+          <p className={`card-variation ${positiveVariation ? 'positive' : 'negative'}`}>
+            {variation}
+          </p>
+        )}
       </div>
-      <p className="value">{value}</p>
-      {variation && <p className="variation">{variation}</p>}
     </div>
   );
 };

@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import DashboardCard from './DashboardCard';
 import ChartCard from './ChartCard';
 import MapPreview from './MapPreview';
+
+import { FaChartBar, FaSignal, FaWifi, FaDatabase } from 'react-icons/fa'; 
+
 import '../styles/Home.scss';
 
 const Home: React.FC = () => {
@@ -35,30 +38,43 @@ const Home: React.FC = () => {
   return (
     <div className="home-container">
       <div className="dashboard-header">
-        <h2>Dashboard</h2>
-        <p>Visão geral dos principais indicadores</p>
+        <div className="titles">
+          <h2>Dashboard</h2>
+          <p>Visão geral dos principais indicadores</p>
+        </div>
+        <button className="map-button" onClick={handleAccessMap}>
+          Acessar Mapa
+        </button>
       </div>
 
       <div className="cards-row">
         <DashboardCard
           title="Vendas Totais"
-          value="1.254"
-          variation="+3.2% vs. mês anterior"
+          value="1,254"
+          variation="+12.5% vs. mês anterior"
+          icon={FaChartBar}
+          positiveVariation={true}
         />
         <DashboardCard
           title="CTOs Disponíveis"
           value="843"
           variation="+1.5% vs. mês anterior"
+          icon={FaSignal}
+          positiveVariation={true}
         />
         <DashboardCard
           title="Taxa de Desconexão"
           value="2.4%"
           variation="-0.8% vs. mês anterior"
+          icon={FaWifi}
+          positiveVariation={false}
         />
         <DashboardCard
           title="HPs Cobertos"
-          value="35"
-          variation="+2% vs. mês anterior"
+          value="13,278"
+          variation="+5.7% vs. mês anterior"
+          icon={FaDatabase}
+          positiveVariation={true}
         />
       </div>
 

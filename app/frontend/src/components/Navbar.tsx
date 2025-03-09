@@ -5,8 +5,8 @@ import '../styles/Navbar.scss';
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleAccessMap = () => {
-    navigate('/map');
+  const handleLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -15,7 +15,9 @@ const Navbar: React.FC = () => {
       <div className="navbar-links">
         <Link to="/">Dashboard</Link>
         <Link to="/map">Mapa</Link>
-        <button onClick={handleAccessMap}>Acessar Mapa</button>
+        <button className="login-btn" onClick={handleLogin}>
+          Login
+        </button>
       </div>
     </nav>
   );
