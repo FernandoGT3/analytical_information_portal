@@ -1,37 +1,81 @@
-import React from 'react';
-import { MapContainer, TileLayer, LayersControl, LayerGroup } from 'react-leaflet';
-import { LatLngExpression } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useState } from 'react';
+import { FaDownload, FaShareAlt, FaMapMarkedAlt } from 'react-icons/fa';
 import '../styles/MapPage.scss';
 
+// Força a tipagem dos ícones para React.FC<SVGProps<SVGSVGElement>>
+const FaDownloadIcon = FaDownload as unknown as React.FC<React.SVGProps<SVGSVGElement>>;
+const FaShareAltIcon = FaShareAlt as unknown as React.FC<React.SVGProps<SVGSVGElement>>;
+const FaMapMarkedAltIcon = FaMapMarkedAlt as unknown as React.FC<React.SVGProps<SVGSVGElement>>;
+
 const MapPage: React.FC = () => {
-  const position: LatLngExpression = [-23.5505, -46.6333];
+  const [activeLayers, setActiveLayers] = useState<string[]>(['CTO']);
+
+  const layers = [
+    { name: 'CTO', color: '#007bff' },
+    { name: 'Vendas', color: '#ffc107' },
+    { name: 'Desconexão', color: '#dc3545' },
+    { name: 'Surveys', color: '#e83e8c' },
+    { name: 'HPs', color: '#28a745' },
+    { name: 'HCs', color: '#17a2b8' },
+  ];
+
+  const toggleLayer = (layerName: string) => {
+    setActiveLayers((prev) =>
+      prev.includes(layerName)
+        ? prev.filter((ln) => ln !== layerName)
+        : [...prev, layerName]
+    );
+  };
+
   return (
     <div className="map-page">
-      <MapContainer center={position} zoom={12} style={{ height: '100vh', width: '100%' }}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          {...{ attribution: "&copy; OpenStreetMap contributors" }}
-        />
-        <LayersControl {...({ position: "topright" } as any)}>
-          <LayersControl.Overlay name="CTO" checked>
-            <LayerGroup>
-              {/* Renderização da camada CTO, por exemplo, utilizando GeoJSON */}
-            </LayerGroup>
-          </LayersControl.Overlay>
-          <LayersControl.Overlay name="Vendas" checked>
-            <LayerGroup>
-              {/* Renderização da camada Vendas */}
-            </LayerGroup>
-          </LayersControl.Overlay>
-          <LayersControl.Overlay name="Desconexão">
-            <LayerGroup>
-              {/* Renderização da camada Desconexão */}
-            </LayerGroup>
-          </LayersControl.Overlay>
-          {/* Outras camadas: Surveys, HPs, HCs */}
-        </LayersControl>
-      </MapContainer>
+      <div className="map-page-header">
+        <h2>Mapa Interativo</h2>
+        <p>Visualize dados geoespaciais por camadas</p>
+      </div>
+
+      <div className="map-page-content">
+        <aside className="map-sidebar">
+          <h3>Camadas</h3>
+          <ul className="layers-list">
+            {layers.map((layer) => (
+              <li key={layer.name}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={activeLayers.includes(layer.name)}
+                    onChange={() => toggleLayer(layer.name)}
+                  />
+                  <span
+                    className="layer-color"
+                    style={{ backgroundColor: layer.color }}
+                  />
+                  {layer.name}
+                </label>
+              </li>
+            ))}
+          </ul>
+
+          <div className="sidebar-actions">
+            <button className="download-btn">
+              <FaDownloadIcon className="btn-icon" />
+              Baixar Dados
+            </button>
+            <button className="share-btn">
+              <FaShareAltIcon className="btn-icon" />
+              Compartilhar
+            </button>
+          </div>
+        </aside>
+
+        <section className="map-view">
+          <FaMapMarkedAltIcon className="map-icon" />
+          <h4>Visualização do Mapa</h4>
+          <span className="active-layers">
+            Camadas ativas: {activeLayers.join(', ') || 'Nenhuma'}
+          </span>
+        </section>
+      </div>
     </div>
   );
 };

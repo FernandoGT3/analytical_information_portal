@@ -28,7 +28,7 @@
       transition: color $transition-default;
 
       &:hover {
-        color: lighten($highlight-color, 10%);
+        opacity: 0.8;
       }
     }
 
@@ -36,7 +36,7 @@
       background-color: transparent;
       color: $white-color;
       border: 1px solid $white-color ;
-      border-radius: 4px;
+      border-radius: 6px;
       padding: 8px 12px;
       font-family: $font-family;
       font-size: 14px;
@@ -44,7 +44,7 @@
       transition: background-color $transition-default, color $transition-default;
 
       &:hover {
-        background-color: lighten($white-color, 5%);
+        background-color: lighten($white-color, 10%);
         color: $primary-color;
       }
     }

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
 import MapPage from './components/MapPage';
-import PrivateRoute from './components/PrivateRoute';
+// import PrivateRoute from './components/PrivateRoute';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -30,9 +30,9 @@ const App: React.FC = () => {
         <Route
           path="/map"
           element={
-            <PrivateRoute>
+            // <PrivateRoute>
               <MapPage />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
       </Routes>
