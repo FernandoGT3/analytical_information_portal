@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { FaDownload, FaShareAlt, FaMapMarkedAlt } from 'react-icons/fa';
+import { FaDownload, FaShareAlt, FaMapMarkedAlt, FaLayerGroup } from 'react-icons/fa';
 import '../styles/MapPage.scss';
 
-// Força a tipagem dos ícones para React.FC<SVGProps<SVGSVGElement>>
+// Forçando a tipagem dos ícones para React.FC<SVGProps<SVGSVGElement>>
 const FaDownloadIcon = FaDownload as unknown as React.FC<React.SVGProps<SVGSVGElement>>;
 const FaShareAltIcon = FaShareAlt as unknown as React.FC<React.SVGProps<SVGSVGElement>>;
 const FaMapMarkedAltIcon = FaMapMarkedAlt as unknown as React.FC<React.SVGProps<SVGSVGElement>>;
+const FaLayerGroupIcon = FaLayerGroup as unknown as React.FC<React.SVGProps<SVGSVGElement>>;
 
 const MapPage: React.FC = () => {
+  // Estado de camadas ativas
   const [activeLayers, setActiveLayers] = useState<string[]>(['CTO']);
 
+  // Lista de camadas com cores
   const layers = [
     { name: 'CTO', color: '#007bff' },
     { name: 'Vendas', color: '#ffc107' },
@@ -29,14 +32,19 @@ const MapPage: React.FC = () => {
 
   return (
     <div className="map-page">
+      {/* Título e subtítulo */}
       <div className="map-page-header">
         <h2>Mapa Interativo</h2>
         <p>Visualize dados geoespaciais por camadas</p>
       </div>
 
       <div className="map-page-content">
+        {/* Painel lateral */}
         <aside className="map-sidebar">
-          <h3>Camadas</h3>
+        <h3>
+          <FaLayerGroupIcon className="layer-icon" />
+          Camadas
+        </h3>
           <ul className="layers-list">
             {layers.map((layer) => (
               <li key={layer.name}>
@@ -68,6 +76,7 @@ const MapPage: React.FC = () => {
           </div>
         </aside>
 
+        {/* Área do mapa */}
         <section className="map-view">
           <FaMapMarkedAltIcon className="map-icon" />
           <h4>Visualização do Mapa</h4>
